@@ -1,3 +1,5 @@
+// Global Variable
+
 // Create a variable and Ask the user for Input (Case Insensitive)
 const inputPerson = () => {
     let valuePerson = window.prompt('What is your choice (paper, rock or scissor)');
@@ -11,7 +13,7 @@ const inputPerson = () => {
 }
 // Generate inputs for the computer
 const inputComputer = () => {
-    let valueComputer = "n/a";
+    let valueComputer = "";
     let randomSelector = Math.random();
     if (randomSelector <= 0.33){
         valueComputer = "rock";
@@ -24,7 +26,7 @@ const inputComputer = () => {
     return valueComputer;
 }
 // Compare both inputs to eachother & Decide who won (rock beats scissor, scissor beats paper and paper beats rock)
-const compareValues = (person, computer, score) => {
+const playRound = (person, computer, score) => {
     switch (person) {
         case "paper":
             if (computer === "rock"){
@@ -73,18 +75,18 @@ const compareValues = (person, computer, score) => {
     };
 };
 // Put all function in main function now
-const rockPaperScissor = () => {
+const game = () => {
     let score = 0;
     for (let i = 0; i < 5; i++){
         let person = inputPerson();
         let computer = inputComputer();
-        let outputArray = compareValues(person, computer, score);
-        let yourScore = outputArray[1];
+        let outputArray = playRound(person, computer, score);
+        score = outputArray[1];
         console.log(`Game count: ${i+1}`)
-        console.log(`Your score: ${yourScore}`);
+        console.log(`Your score: ${score}`);
     };
 
 }
 
-rockPaperScissor();
+game();
 
